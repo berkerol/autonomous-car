@@ -31,19 +31,20 @@ typedef struct
   volatile	uint32_t CTCR;
 } PWM_TypeDef;
 
-#define IOCON_MOTOR_SPEED_ADDRESS_A	0x4002C088 //P30 P1_2 PWM0[1]
-#define IOCON_MOTOR_SPEED_A	*((volatile uint32_t*)(IOCON_MOTOR_SPEED_ADDRESS_A))
-#define IOCON_MOTOR_SPEED_ADDRESS_B	0x4002C08C //P29 P1_3 PWM0[2]
-#define IOCON_MOTOR_SPEED_B	*((volatile uint32_t*)(IOCON_MOTOR_SPEED_ADDRESS_B))
-
 #define PWM0_BASE	0x40014000
 #define PWM1_BASE	0x40018000
 
-#define PWM0	((PWM_TypeDef*) PWM0_BASE)
-#define PWM1	((PWM_TypeDef*) PWM1_BASE)
+#define PWM0 ((PWM_TypeDef*) PWM0_BASE)
+#define PWM1 ((PWM_TypeDef*) PWM1_BASE)
+
+#define IOCON_LEFT_MOTOR_ADDRESS 0x4002C088 //P30 P1_2 PWM0[1]
+#define IOCON_LEFT_MOTOR	*((volatile uint32_t*)(IOCON_LEFT_MOTOR_ADDRESS))
+
+#define IOCON_RIGHT_MOTOR_ADDRESS 0x4002C08C //P29 P1_3 PWM0[2]
+#define IOCON_RIGHT_MOTOR	*((volatile uint32_t*)(IOCON_RIGHT_MOTOR_ADDRESS))
 
 void PWM_Init(void);
-void PWM_Cycle_Rate(uint32_t period_In_Cycles);
-void PWM_Write(uint32_t T_ON);
+void PWM_Left(uint32_t T_ON);
+void PWM_Right(uint32_t T_ON);
 
 #endif

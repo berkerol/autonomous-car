@@ -29,19 +29,13 @@ typedef struct {
 #define TIMER2_BASE	0x40090000
 #define TIMER3_BASE	0x40094000
 
-#define TIMER0	((TIMER_TypeDef*) TIMER0_BASE)
-#define TIMER1	((TIMER_TypeDef*) TIMER1_BASE)
-#define TIMER2	((TIMER_TypeDef*) TIMER2_BASE)
-#define TIMER3	((TIMER_TypeDef*) TIMER3_BASE)
-
-//Write IOCON Register Address of OUT Pin.
-#define IOCON_OUT_1_ADDRESS	0x4002C05C	//P15 P0_23 T3_CAP0
-#define IOCON_OUT_1	*((volatile uint32_t*)(IOCON_OUT_1_ADDRESS))
-	
-extern uint32_t currentTime;
-extern uint32_t previousTime;
-extern uint32_t capturedTime;
+#define TIMER0 ((TIMER_TypeDef*) TIMER0_BASE)
+#define TIMER1 ((TIMER_TypeDef*) TIMER1_BASE)
+#define TIMER2 ((TIMER_TypeDef*) TIMER2_BASE)
+#define TIMER3 ((TIMER_TypeDef*) TIMER3_BASE)
 
 void Timer_Init(void);
+
+extern uint8_t ledState;
 
 #endif

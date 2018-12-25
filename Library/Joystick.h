@@ -14,15 +14,15 @@
 #define JOYSTICK_CENTER_MASK	((uint32_t) 1 << 3)
 #define JOYSTICK_RIGHT_MASK		((uint32_t) 1 << 4)
 
-#define IN1 ((uint32_t) 1 << 0)// P9
-#define IN2 ((uint32_t) 1 << 24)// P16
-#define IN3 ((uint32_t) 1 << 25)// P17
-#define IN4 ((uint32_t) 1 << 26)// P18
+#define IN1 ((uint32_t) 1 << 0) //P9
+#define IN2 ((uint32_t) 1 << 8) //P12
+#define IN3 ((uint32_t) 1 << 7) //P13
+#define IN4 ((uint32_t) 1 << 2) //P42
 
-#define LED1 ((uint32_t) 1 << 1)// P10
-#define LED2 ((uint32_t) 1 << 9)// P11
-#define LED3 ((uint32_t) 1 << 8)// P12
-#define LED4 ((uint32_t) 1 << 7)// P13
+#define LED1 ((uint32_t) 1 << 21) //P8
+#define LED2 ((uint32_t) 1 << 1) //P10
+#define LED3 ((uint32_t) 1 << 4) //P34
+#define LED4 ((uint32_t) 1 << 5) //P33
 
 void Joystick_Init(void);
 void Motor_Controller_Init(void);
@@ -33,6 +33,27 @@ uint8_t Joystick_Down_Pressed(void);
 uint8_t Joystick_Up_Pressed(void);
 uint8_t Joystick_Center_Pressed(void);
 uint8_t Joystick_Right_Pressed(void);
+uint8_t Push_Button_Pressed(void);
+
+extern uint8_t forwardFlag;
+
+void turnOffLeds(void);
+void frontLeds(void);
+void backLeds(void);
+void leftLeds(uint8_t value);
+void rightLeds(uint8_t value);
+
+void leftForward(void);
+void leftBackward(void);
+void leftStop(void);
+
+void rightForward(void);
+void rightBackward(void);
+void rightStop(void);
+
+void forward(void);
+void backward(void);
+void stop(void);
 
 void IN1_Write(uint8_t value);
 void IN2_Write(uint8_t value);

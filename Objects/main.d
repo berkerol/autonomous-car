@@ -12,4 +12,7 @@
 .\objects\main.o: Library/PWM.h
 .\objects\main.o: Library/SystemStructures.h
 .\objects\main.o: Library/Timer.h
+.\objects\main.o: Library/Ultrasonic.h
+.\objects\main.o: Library/External.h
+.\objects\main.o: Library/ADC.h
 .\objects\main.o: Parameters.h

@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>LAB_005</OutputName>
+          <OutputName>Interim</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -392,6 +392,11 @@
               <FileType>5</FileType>
               <FilePath>.\Parameters.h</FilePath>
             </File>
+            <File>
+              <FileName>pins.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\pins.txt</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -403,24 +408,24 @@
               <FilePath>.\Library\GPIO.c</FilePath>
             </File>
             <File>
-              <FileName>Joystick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Library\Joystick.c</FilePath>
-            </File>
-            <File>
-              <FileName>PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Library\PWM.c</FilePath>
-            </File>
-            <File>
               <FileName>GPIO.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Library\GPIO.h</FilePath>
             </File>
             <File>
+              <FileName>Joystick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\Joystick.c</FilePath>
+            </File>
+            <File>
               <FileName>Joystick.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Library\Joystick.h</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\PWM.c</FilePath>
             </File>
             <File>
               <FileName>PWM.h</FileName>
@@ -436,6 +441,36 @@
               <FileName>Timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Library\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>Ultrasonic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\Ultrasonic.c</FilePath>
+            </File>
+            <File>
+              <FileName>Ultrasonic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Library\Ultrasonic.h</FilePath>
+            </File>
+            <File>
+              <FileName>External.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\External.c</FilePath>
+            </File>
+            <File>
+              <FileName>External.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Library\External.h</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Library\ADC.h</FilePath>
             </File>
           </Files>
         </Group>
