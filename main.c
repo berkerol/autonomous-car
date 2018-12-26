@@ -53,8 +53,10 @@ void update() {
 		stop();
 		turnOffLeds();
 		turning = 0;
-		//Wait for button jump
-		for(int i = 0; i < 5000; i++);
+		obstacleEscape = 0;
+		lightEscape = 0;
+		//Wait for button jump for half second
+		for(int i = 0; i < 10000000; i++);
 	}
 	//Read ultrasonic interrupt
 	if (ultrasonicSensorEdgeCount == 2) {
@@ -79,26 +81,6 @@ void update() {
 	}
 	//Manual mode
 	if (currentMode == 0 && obstacleEscape == 0) {
-		//Move according to the Joystick inputs
-		if (Joystick_Up_Pressed()) {
-			forward();
-			frontLeds();
-			turning = 0;
-		} else if (Joystick_Down_Pressed()) {
-			backward();
-			backLeds();
-			turning = 0;
-		} else if (Joystick_Left_Pressed()) {
-			forward();
-			turning = -2;
-		} else if (Joystick_Right_Pressed()) {
-			forward();
-			turning = 2;
-		} else if (Joystick_Center_Pressed()) {
-			stop();
-			turnOffLeds();
-			turning = 0;
-		}
 		//Escape from light source
 		if (lightEscape == 0 && forwardFlag == 1) {
 			if (ldrLeft < LIGHT_SOURCE) {
@@ -118,6 +100,26 @@ void update() {
 				turning = 0;
 				lightEscape = 0;
 			}
+		}
+		//Move with Joystick
+		if (Joystick_Up_Pressed() && lightEscape == 0) {
+			forward();
+			frontLeds();
+			turning = 0;
+		} else if (Joystick_Down_Pressed() && lightEscape == 0) {
+			backward();
+			backLeds();
+			turning = 0;
+		} else if (Joystick_Left_Pressed() && lightEscape == 0) {
+			forward();
+			turning = -2;
+		} else if (Joystick_Right_Pressed() && lightEscape == 0) {
+			forward();
+			turning = 2;
+		} else if (Joystick_Center_Pressed() && lightEscape == 0) {
+			stop();
+			turnOffLeds();
+			turning = 0;
 		}
 	} else if (obstacleEscape == 0) {
 		//Autonomous mode
