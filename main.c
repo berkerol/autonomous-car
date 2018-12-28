@@ -85,10 +85,12 @@ void update() {
 		if (lightEscape == 0 && forwardFlag == 1) {
 			if (ldrLeft < LIGHT_SOURCE) {
 				forward();
+				rightBackward();
 				turning = 2;
 				lightEscape = 1;
 			} else if (ldrRight < LIGHT_SOURCE) {
 				forward();
+				leftBackward();
 				turning = -2;
 				lightEscape = 1;
 			}
@@ -112,9 +114,11 @@ void update() {
 			turning = 0;
 		} else if (Joystick_Left_Pressed() && lightEscape == 0) {
 			forward();
+			leftBackward();
 			turning = -2;
 		} else if (Joystick_Right_Pressed() && lightEscape == 0) {
 			forward();
+			rightBackward();
 			turning = 2;
 		} else if (Joystick_Center_Pressed() && lightEscape == 0) {
 			stop();
