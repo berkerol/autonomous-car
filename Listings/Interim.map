@@ -196,19 +196,19 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      228  startup_lpc407x_8x_177x_8x.o(RESET)
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     Library\ADC.c                            0x00000000   Number         0  adc.o ABSOLUTE
     Library\External.c                       0x00000000   Number         0  external.o ABSOLUTE
     Library\GPIO.c                           0x00000000   Number         0  gpio.o ABSOLUTE
@@ -310,6 +310,7 @@ Image Symbol Table
     i.turnOffLeds                            0x00000ee8   Section        0  joystick.o(i.turnOffLeds)
     i.update                                 0x00000f10   Section        0  main.o(i.update)
     .data                                    0x10000000   Section        8  main.o(.data)
+    turning                                  0x10000004   Data           4  main.o(.data)
     .data                                    0x10000008   Section        1  joystick.o(.data)
     .data                                    0x10000009   Section        1  timer.o(.data)
     .data                                    0x1000000c   Section       20  ultrasonic.o(.data)
@@ -446,12 +447,11 @@ Image Symbol Table
     rightStop                                0x00000ecd   Thumb Code    16  joystick.o(i.rightStop)
     stop                                     0x00000edd   Thumb Code    12  joystick.o(i.stop)
     turnOffLeds                              0x00000ee9   Thumb Code    34  joystick.o(i.turnOffLeds)
-    update                                   0x00000f11   Thumb Code   834  main.o(i.update)
-    Region$$Table$$Base                      0x00001284   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000012a4   Number         0  anon$$obj.o(Region$$Table)
+    update                                   0x00000f11   Thumb Code   910  main.o(i.update)
+    Region$$Table$$Base                      0x000012d4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000012f4   Number         0  anon$$obj.o(Region$$Table)
     obstacleEscape                           0x10000000   Data           1  main.o(.data)
     lightEscape                              0x10000001   Data           1  main.o(.data)
-    turning                                  0x10000004   Data           4  main.o(.data)
     forwardFlag                              0x10000008   Data           1  joystick.o(.data)
     ledState                                 0x10000009   Data           1  timer.o(.data)
     isUltrasonicSensorTriggerEnded           0x1000000c   Data           1  ultrasonic.o(.data)
@@ -478,9 +478,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000f9
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000012e4, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001334, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000012a4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000012f4, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -561,26 +561,26 @@ Memory Map of the image
     0x00000ecc   0x00000ecc   0x00000010   Code   RO          171    i.rightStop         joystick.o
     0x00000edc   0x00000edc   0x0000000c   Code   RO          172    i.stop              joystick.o
     0x00000ee8   0x00000ee8   0x00000028   Code   RO          173    i.turnOffLeds       joystick.o
-    0x00000f10   0x00000f10   0x00000374   Code   RO            6    i.update            main.o
-    0x00001284   0x00001284   0x00000020   Data   RO          675    Region$$Table       anon$$obj.o
+    0x00000f10   0x00000f10   0x000003c4   Code   RO            6    i.update            main.o
+    0x000012d4   0x000012d4   0x00000020   Data   RO          675    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x000012a4, Size: 0x00000040, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x000012f4, Size: 0x00000040, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x10000000   0x000012a4   0x00000008   Data   RW            7    .data               main.o
-    0x10000008   0x000012ac   0x00000001   Data   RW          174    .data               joystick.o
-    0x10000009   0x000012ad   0x00000001   Data   RW          397    .data               timer.o
-    0x1000000a   0x000012ae   0x00000002   PAD
-    0x1000000c   0x000012b0   0x00000014   Data   RW          442    .data               ultrasonic.o
-    0x10000020   0x000012c4   0x00000001   Data   RW          509    .data               external.o
-    0x10000021   0x000012c5   0x00000003   PAD
-    0x10000024   0x000012c8   0x0000000c   Data   RW          553    .data               adc.o
-    0x10000030   0x000012d4   0x00000010   Data   RW          620    .data               system_lpc407x_8x_177x_8x.o
+    0x10000000   0x000012f4   0x00000008   Data   RW            7    .data               main.o
+    0x10000008   0x000012fc   0x00000001   Data   RW          174    .data               joystick.o
+    0x10000009   0x000012fd   0x00000001   Data   RW          397    .data               timer.o
+    0x1000000a   0x000012fe   0x00000002   PAD
+    0x1000000c   0x00001300   0x00000014   Data   RW          442    .data               ultrasonic.o
+    0x10000020   0x00001314   0x00000001   Data   RW          509    .data               external.o
+    0x10000021   0x00001315   0x00000003   PAD
+    0x10000024   0x00001318   0x0000000c   Data   RW          553    .data               adc.o
+    0x10000030   0x00001324   0x00000010   Data   RW          620    .data               system_lpc407x_8x_177x_8x.o
 
 
-    Execution Region ER_ZI (Exec base: 0x10000040, Load base: 0x000012e4, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x10000040, Load base: 0x00001334, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -594,19 +594,19 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       424         44          0         12          0       3329   adc.o
+       424         44          0         12          0       3317   adc.o
         48         12          0          1          0        653   external.o
-        46          0          0          0          0       2814   gpio.o
-       804        102          0          1          0      15351   joystick.o
-       964         58          0          8          0      29056   main.o
-       236         26          0          0          0       1466   pwm.o
-        40         12        228          0       1024       1076   startup_lpc407x_8x_177x_8x.o
+        46          0          0          0          0       2810   gpio.o
+       804        102          0          1          0      15319   joystick.o
+      1044         62          0          8          0      29092   main.o
+       236         26          0          0          0       1458   pwm.o
+        40         12        228          0       1024       1072   startup_lpc407x_8x_177x_8x.o
       1040         62          0         16          0       4540   system_lpc407x_8x_177x_8x.o
-       248         24          0          1          0      31603   timer.o
-       566         78          0         20          0      34562   ultrasonic.o
+       248         24          0          1          0      31595   timer.o
+       566         78          0         20          0      34550   ultrasonic.o
 
     ----------------------------------------------------------------------
-      4418        418        260         64       1024     124450   Object Totals
+      4498        422        260         64       1024     124406   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          5          0          0   (incl. Padding)
 
@@ -645,15 +645,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4512        434        260         64       1024     119222   Grand Totals
-      4512        434        260         64       1024     119222   ELF Image Totals
-      4512        434        260         64          0          0   ROM Totals
+      4592        438        260         64       1024     119178   Grand Totals
+      4592        438        260         64       1024     119178   ELF Image Totals
+      4592        438        260         64          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4772 (   4.66kB)
+    Total RO  Size (Code + RO Data)                 4852 (   4.74kB)
     Total RW  Size (RW Data + ZI Data)              1088 (   1.06kB)
-    Total ROM Size (Code + RO Data + RW Data)       4836 (   4.72kB)
+    Total ROM Size (Code + RO Data + RW Data)       4916 (   4.80kB)
 
 ==============================================================================
 

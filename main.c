@@ -13,7 +13,7 @@ uint8_t obstacleEscape = 0;
 //Stores whether car is escaping from light source
 uint8_t lightEscape = 0;
 //Stores whether car is turning: negatives left, positives right
-int turning = 0;
+static int turning = 0;
  
 void init() {
 	Joystick_Init();
@@ -121,8 +121,8 @@ void update() {
 			turnOffLeds();
 			turning = 0;
 		}
-	} else if (obstacleEscape == 0) {
-		//Autonomous mode
+	} else if (obstacleEscape == 0) { //Autonomous mode
+		
 		if (ldrLeft > ldrRight + LDR_DIFFERENCE_3) {
 			forward();
 			leftBackward();
@@ -133,9 +133,11 @@ void update() {
 			turning = 3;
 		} else if (ldrLeft > ldrRight + LDR_DIFFERENCE_2) {
 			forward();
+			leftBackward();
 			turning = -2;
 		} else if (ldrRight > ldrLeft + LDR_DIFFERENCE_2) {
 			forward();
+			rightBackward();
 			turning = 2;
 		} else if (ldrLeft > ldrRight + LDR_DIFFERENCE_1) {
 			forward();
@@ -149,30 +151,31 @@ void update() {
 			turning = 0;
 		}
 	}
+	
 	//Set motor speeds and LEDs
 	if (turning == -3) {
-		PWM_Left(trimpot / 2);
+		PWM_Left(trimpot);
 		PWM_Right(trimpot);
 		leftLeds(ledState);
-	} else if (turning == -2) {
-		PWM_Left(0);
+	} else if (turning == -2) {		
+		PWM_Left(trimpot * 4 / 5);
 		PWM_Right(trimpot);
 		leftLeds(ledState);
 	} else if (turning == -1) {
-		PWM_Left(trimpot / 2);
+		PWM_Left(trimpot * 4 / 5);
 		PWM_Right(trimpot);
 		leftLeds(ledState);
 	} else if (turning == 1) {
 		PWM_Left(trimpot);
-		PWM_Right(trimpot / 2);
+		PWM_Right(trimpot * 4 / 5);
 		rightLeds(ledState);
 	} else if (turning == 2) {
 		PWM_Left(trimpot);
-		PWM_Right(0);
+		PWM_Right(trimpot * 4 / 5);
 		rightLeds(ledState);
 	} else if (turning == 3) {
 		PWM_Left(trimpot);
-		PWM_Right(trimpot / 2);
+		PWM_Right(trimpot);
 		rightLeds(ledState);
 	} else {
 		PWM_Left(trimpot);
