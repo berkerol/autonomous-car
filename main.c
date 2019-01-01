@@ -14,6 +14,8 @@ uint8_t obstacleEscape = 0;
 uint8_t lightEscape = 0;
 //Stores whether car is turning: negatives left, positives right
 static int turning = 0;
+//Stores whether autonomous mode is started
+uint8_t joystickUp = 0;
  
 void init() {
 	Joystick_Init();
@@ -55,6 +57,7 @@ void update() {
 		turning = 0;
 		obstacleEscape = 0;
 		lightEscape = 0;
+		joystickUp = 0;
 		//Wait for button jump for half second
 		for(int i = 0; i < 10000000; i++);
 	}
@@ -125,34 +128,37 @@ void update() {
 			turnOffLeds();
 			turning = 0;
 		}
-	} else if (obstacleEscape == 0) { //Autonomous mode
-		
-		if (ldrLeft > ldrRight + LDR_DIFFERENCE_3) {
-			forward();
-			leftBackward();
-			turning = -3;
-		} else if (ldrRight > ldrLeft + LDR_DIFFERENCE_3) {
-			forward();
-			rightBackward();
-			turning = 3;
-		} else if (ldrLeft > ldrRight + LDR_DIFFERENCE_2) {
-			forward();
-			leftBackward();
-			turning = -2;
-		} else if (ldrRight > ldrLeft + LDR_DIFFERENCE_2) {
-			forward();
-			rightBackward();
-			turning = 2;
-		} else if (ldrLeft > ldrRight + LDR_DIFFERENCE_1) {
-			forward();
-			turning = -1;
-		} else if (ldrRight > ldrLeft + LDR_DIFFERENCE_1) {
-			forward();
-			turning = 1;
-		} else {
-			forward();
-			frontLeds();
-			turning = 0;
+	} else if (obstacleEscape == 0) {
+		if (Joystick_Up_Pressed() && joystickUp == 0) {
+			joystickUp = 1;
+		}
+		//Autonomous mode
+		if (joystickUp == 1) {
+			if (ldrLeft > ldrRight + LDR_DIFFERENCE_3) {
+				forward();
+				leftBackward();
+				turning = -3;
+			} else if (ldrRight > ldrLeft + LDR_DIFFERENCE_3) {
+				forward();
+				rightBackward();
+				turning = 3;
+			} else if (ldrLeft > ldrRight + LDR_DIFFERENCE_2) {
+				forward();
+				turning = -2;
+			} else if (ldrRight > ldrLeft + LDR_DIFFERENCE_2) {
+				forward();
+				turning = 2;
+			} else if (ldrLeft > ldrRight + LDR_DIFFERENCE_1) {
+				forward();
+				turning = -1;
+			} else if (ldrRight > ldrLeft + LDR_DIFFERENCE_1) {
+				forward();
+				turning = 1;
+			} else {
+				forward();
+				frontLeds();
+				turning = 0;
+			}
 		}
 	}
 	
