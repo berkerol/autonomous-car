@@ -34,6 +34,8 @@ void init() {
 	currentMode = START_MODE;
 	
 	ADC_Init();
+
+	Serial_Init();
 	
 	stop();
 	turnOffLeds();
@@ -45,6 +47,19 @@ void update() {
 	trimpot = Trimpot_Read();
 	ldrLeft = LDR_Left_Read();
 	ldrRight = LDR_Right_Read();
+	bool modeChanged = false;
+	// Read serial
+	char serial = Serial_ReadData();
+	if (serial == 42) {
+		currentMode = 0;
+		modeChanged = true;
+		Serial_Write("MANUEL");
+	}
+	if (serial == 35) {
+		currentMode = 1;
+		modeChanged = true;
+		Serial_Write("AUTO");
+	}
 	//Read push button
 	if (Push_Button_Pressed()) {
 		if (currentMode == 0) {
@@ -52,14 +67,17 @@ void update() {
 		} else {
 			currentMode = 0;
 		}
+		modeChanged = true;
+		//Wait for button jump for half second
+		for(int i = 0; i < 10000000; i++);
+	}
+	if (modeChanged) {
 		stop();
 		turnOffLeds();
 		turning = 0;
 		obstacleEscape = 0;
 		lightEscape = 0;
 		joystickUp = 0;
-		//Wait for button jump for half second
-		for(int i = 0; i < 10000000; i++);
 	}
 	//Read ultrasonic interrupt
 	if (ultrasonicSensorEdgeCount == 2) {
